@@ -645,16 +645,13 @@ void __fastcall TForm1::N2Click(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-
-
-
-
-
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
-	int x = StrToInt(Edit2->Text);
-	int y = StrToInt(Edit1->Text);
-	int TM = StrToInt(Edit3->Text);
+	int x,y,TM;
+	try{
+	x = StrToInt(Edit2->Text);
+	y = StrToInt(Edit1->Text);
+	TM = StrToInt(Edit3->Text);
 	if(TM < 1){
 		 ShowMessage("總地雷必須大於0");
 	}else if(x <=1 ||y <=1){
@@ -669,6 +666,10 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 		Label3->Caption = IntToStr(TotalMines);
 		Start();
 	}
+	}catch(...){
+		ShowMessage("請輸入整數");
+	}
+
 }
 //---------------------------------------------------------------------------
 
@@ -690,9 +691,66 @@ N99101Click(Sender);
 }
 //---------------------------------------------------------------------------
 
+void TForm1::GetPersent(){
+if(Edit3->Text != ""){
+	float x,y,TM;
+	try{
+	x = StrToFloat(Edit2->Text);
+	y = StrToFloat(Edit1->Text);
+	TM = StrToFloat(Edit3->Text);
+	float persent = ((TM) / (x*y))*100;
+	if(persent >= 100){
+		Edit4->Text = "100";
+	}else{
+	Edit4->Text =  FloatToStr(persent);
+	}
+	}catch(...){
+		ShowMessage("請輸入整數");
+	}
+}
+}
+void __fastcall TForm1::Edit3KeyUp(TObject *Sender, WORD &Key, TShiftState Shift)
+
+{
+	GetPersent();
+}
+//---------------------------------------------------------------------------
 
 
+void __fastcall TForm1::Edit4KeyUp(TObject *Sender, WORD &Key, TShiftState Shift)
 
+{
+if(Edit4->Text != ""){
+	float x,y,persent;
+	try{
+		x = StrToFloat(Edit2->Text);
+		y = StrToFloat(Edit1->Text);
+		persent = StrToFloat(Edit4->Text);
+		if(persent >=100){
+			Edit4->Text = "100";
+			persent = 100;
+		}
+		int MS = ((x * y)/100) * (persent);
+		Edit3->Text = FloatToStr(MS);
+	}catch(...){
+		ShowMessage("請輸入整數");
+	}
+
+}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::FormClick(TObject *Sender)
+{
+	Panel2->Visible = false;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Edit4Enter(TObject *Sender)
+{
+ 	GetPersent();
+}
+//---------------------------------------------------------------------------
 
 
 

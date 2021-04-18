@@ -39,6 +39,15 @@ __published:	// IDE-managed Components
 	TButton *Button2;
 	TEdit *Edit3;
 	TImageList *ImageList1;
+	TLabel *Label10;
+	TEdit *Edit4;
+	TLabel *Label11;
+	TLabel *Label12;
+	TLabel *Label13;
+	TLabel *Label14;
+	TLabel *Label9;
+	TLabel *Label15;
+	TLabel *Label16;
 	void __fastcall imgsMouseEnter(TObject *Sender);
 	void __fastcall imgsMouseLeave(TObject *Sender);
 	void __fastcall imgsMouseEnter_flag(TObject *Sender);
@@ -62,6 +71,10 @@ __published:	// IDE-managed Components
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall N3Click(TObject *Sender);
 	void __fastcall FormActivate(TObject *Sender);
+	void __fastcall Edit3KeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall Edit4KeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall FormClick(TObject *Sender);
+	void __fastcall Edit4Enter(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);
@@ -74,6 +87,7 @@ public:		// User declarations
 	void Clear();
 	void WinCheck();
 	void Gameover(int);
+	void GetPersent();
 };
 
 //---------------------------------------------------------------------------

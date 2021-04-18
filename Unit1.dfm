@@ -4,7 +4,7 @@ object Form1: TForm1
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = #36393#22320#38647
-  ClientHeight = 328
+  ClientHeight = 172
   ClientWidth = 400
   Color = clBtnFace
   DoubleBuffered = True
@@ -550,6 +550,7 @@ object Form1: TForm1
   OldCreateOrder = False
   Position = poDesktopCenter
   OnActivate = FormActivate
+  OnClick = FormClick
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -636,16 +637,31 @@ object Form1: TForm1
   object Panel2: TPanel
     Left = 0
     Top = 0
-    Width = 153
-    Height = 328
+    Width = 161
+    Height = 172
     Align = alLeft
     Color = clCream
     ParentBackground = False
     TabOrder = 1
     Visible = False
+    object Label15: TLabel
+      Left = 10
+      Top = 127
+      Width = 143
+      Height = 17
+      Caption = '  '#24314#35696'      10%  15%  20%'
+      Color = clBlack
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -13
+      Font.Name = #24494#36575#27491#40657#39636
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+    end
     object Label5: TLabel
       Left = 9
-      Top = 34
+      Top = 30
       Width = 48
       Height = 20
       Caption = #39640#24230#65306
@@ -660,7 +676,7 @@ object Form1: TForm1
     end
     object Label6: TLabel
       Left = 9
-      Top = 61
+      Top = 52
       Width = 48
       Height = 20
       Caption = #23532#24230#65306
@@ -675,7 +691,7 @@ object Form1: TForm1
     end
     object Label7: TLabel
       Left = 9
-      Top = 84
+      Top = 74
       Width = 64
       Height = 20
       Caption = #22320#38647#25976#65306
@@ -689,8 +705,8 @@ object Form1: TForm1
       ParentFont = False
     end
     object Label8: TLabel
-      Left = 42
-      Top = 8
+      Left = 46
+      Top = 4
       Width = 64
       Height = 20
       Caption = #33258#35330#22823#23567
@@ -703,65 +719,195 @@ object Form1: TForm1
       ParentColor = False
       ParentFont = False
     end
+    object Label10: TLabel
+      Left = 9
+      Top = 94
+      Width = 64
+      Height = 20
+      Caption = #30334#20998#27604#65306
+      Color = clBlack
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -16
+      Font.Name = #24494#36575#27491#40657#39636
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label11: TLabel
+      Left = 130
+      Top = 30
+      Width = 16
+      Height = 20
+      Caption = #20491
+      Color = clBlack
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -16
+      Font.Name = #24494#36575#27491#40657#39636
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label12: TLabel
+      Left = 130
+      Top = 52
+      Width = 16
+      Height = 20
+      Caption = #20491
+      Color = clBlack
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -16
+      Font.Name = #24494#36575#27491#40657#39636
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label13: TLabel
+      Left = 130
+      Top = 74
+      Width = 16
+      Height = 20
+      Caption = #38982
+      Color = clBlack
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -16
+      Font.Name = #24494#36575#27491#40657#39636
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label14: TLabel
+      Left = 130
+      Top = 94
+      Width = 14
+      Height = 20
+      Caption = '%'
+      Color = clBlack
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -16
+      Font.Name = #24494#36575#27491#40657#39636
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label9: TLabel
+      Left = 10
+      Top = 114
+      Width = 141
+      Height = 17
+      Caption = #38627#26131#24230'    '#31777#21934'  '#20013#32026'  '#22256#38627
+      Color = clBlack
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -13
+      Font.Name = #24494#36575#27491#40657#39636
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label16: TLabel
+      Left = 52
+      Top = 120
+      Width = 3
+      Height = 17
+      Caption = ':'
+      Color = clBlack
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -13
+      Font.Name = #24494#36575#27491#40657#39636
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+    end
     object Edit1: TEdit
-      Left = 63
-      Top = 34
+      Left = 68
+      Top = 30
       Width = 56
-      Height = 27
-      Font.Charset = DEFAULT_CHARSET
+      Height = 21
+      AutoSize = False
+      Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -16
-      Font.Name = 'Tahoma'
+      Font.Name = #24494#36575#27491#40657#39636
       Font.Style = []
+      MaxLength = 3
       ParentFont = False
       TabOrder = 0
       Text = '10'
     end
     object Edit2: TEdit
-      Left = 63
-      Top = 58
+      Left = 68
+      Top = 49
       Width = 56
-      Height = 27
-      Font.Charset = DEFAULT_CHARSET
+      Height = 21
+      AutoSize = False
+      Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -16
-      Font.Name = 'Tahoma'
+      Font.Name = #24494#36575#27491#40657#39636
       Font.Style = []
+      MaxLength = 3
       ParentFont = False
       TabOrder = 1
       Text = '10'
     end
     object Button1: TButton
-      Left = 8
-      Top = 110
-      Width = 54
-      Height = 25
-      Caption = #30906#23450
+      Left = 9
+      Top = 149
+      Width = 104
+      Height = 20
+      Caption = #38283#22987
       TabOrder = 2
       OnClick = Button1Click
     end
     object Button2: TButton
-      Left = 68
-      Top = 110
-      Width = 56
-      Height = 25
+      Left = 118
+      Top = 149
+      Width = 34
+      Height = 20
       Caption = #21462#28040
       TabOrder = 3
       OnClick = Button2Click
     end
     object Edit3: TEdit
-      Left = 68
-      Top = 84
-      Width = 49
-      Height = 27
-      Font.Charset = DEFAULT_CHARSET
+      Left = 79
+      Top = 71
+      Width = 45
+      Height = 21
+      AutoSize = False
+      Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -16
-      Font.Name = 'Tahoma'
+      Font.Name = #24494#36575#27491#40657#39636
       Font.Style = []
+      MaxLength = 6
       ParentFont = False
       TabOrder = 4
       Text = '10'
+      OnKeyUp = Edit3KeyUp
+    end
+    object Edit4: TEdit
+      Left = 79
+      Top = 91
+      Width = 45
+      Height = 21
+      AutoSize = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = #24494#36575#27491#40657#39636
+      Font.Style = []
+      MaxLength = 6
+      ParentFont = False
+      TabOrder = 5
+      Text = '10'
+      OnEnter = Edit4Enter
+      OnKeyUp = Edit4KeyUp
     end
   end
   object MainMenu1: TMainMenu
@@ -810,7 +956,7 @@ object Form1: TForm1
     Left = 200
     Top = 64
     Bitmap = {
-      494C01010A002400440010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010A002400540010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       000000000000000000000000000000000000FFDCD100917DE500E6C6D600FFDC
       D100FFDCD100FFDCD100FFDCD100FFDCD100FBD8CD009A787100E0BEB400FFDC
