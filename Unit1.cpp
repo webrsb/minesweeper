@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 
 #include <vcl.h>
 #pragma hdrstop
@@ -13,9 +13,9 @@
 TForm1 *Form1;
 TImage **imgs;
 int **Data;
-int num_t;  //¦a¹pÁ`¼Æ
+int num_t;  //åœ°é›·ç¸½æ•¸
 int first_click,TotalMines,TotalMines_D,num_x,num_y,remainder,gametime,RL_click;
-int *num;   //¦a¹p°}¦C
+int *num;   //åœ°é›·é™£åˆ—
 int nnn[8],nnn3[8];
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
@@ -28,9 +28,9 @@ void TForm1::Start()
 {
 	Panel2->Visible = false;
 	CreateImgs(num_x,num_y);
-	first_click = true;//²Ä¤@¦¸ÂIÀ»
+	first_click = true;//ç¬¬ä¸€æ¬¡é»æ“Š
 	RL_click = false;
-	//0¯Á¤Ş½s¸¹ 1¦a¹p¦ì¸m 2¬O§_´¡ºX 3¬O§_«ö¶}
+	//0ç´¢å¼•ç·¨è™Ÿ 1åœ°é›·ä½ç½® 2æ˜¯å¦æ’æ—— 3æ˜¯å¦æŒ‰é–‹
 	Data = new int*[num_t];
 	for(int i=0; i<num_t; i++){
 		Data[i] = new int[4];
@@ -68,19 +68,19 @@ void TForm1::Clear()
 	Panel1->AutoSize =false;
 	first_click = true;
 	Timer1->Enabled = false;
-	gametime = 0;//¹CÀ¸®É¶¡ªì¨Ï¤Æ
+	gametime = 0;//éŠæˆ²æ™‚é–“åˆä½¿åŒ–
 	Label4->Caption = gametime;
-	if(imgs != NULL)    //²M°£¹Ï¤ù
+	if(imgs != NULL)    //æ¸…é™¤åœ–ç‰‡
 	{
 		for(int i=num_t-1;i>=0;i--){
 			delete imgs[i];
 		}
 		imgs = NULL;
 	}
-	if(num != NULL){    // §R°£¸ê®Æ
+	if(num != NULL){    // åˆªé™¤è³‡æ–™
 		delete []num;
 	}
-	if(Data != NULL)    //§R°£¸ê®Æ
+	if(Data != NULL)    //åˆªé™¤è³‡æ–™
 	{
 		for(int i=num_t-1;i>=0;i--)
 		  delete Data[i];
@@ -185,7 +185,7 @@ void __fastcall TForm1::imgsMouseDown(TObject *Sender, TMouseButton Button, TShi
 //---------------------------------------------------------------------------
 void __fastcall TForm1::imgsMouseDown_Empty(TObject *Sender, TMouseButton Button, TShiftState Shift,
 		  int X, int Y){
-	if (Shift == TShiftState() << ssLeft << ssRight){  //¦P®É«ö±½¹p
+	if (Shift == TShiftState() << ssLeft << ssRight){  //åŒæ™‚æŒ‰æƒé›·
 		RL_click = true;
 		TImage *imgshow=(TImage*)Sender;
 		int NO = imgshow->Tag;
@@ -206,7 +206,7 @@ if(RL_click == true){
 	TImage *imgshow=(TImage*)Sender;
 	int NO = imgshow->Tag;
 	int Mines;
-	Mines = MinesFound(NO); //ÀË¬d«ö¤U¥|¶g¤§¦a¹p
+	Mines = MinesFound(NO); //æª¢æŸ¥æŒ‰ä¸‹å››é€±ä¹‹åœ°é›·
 	int nnn2[8] = nnn;
 	int j = 0;
 	bool flag = true;
@@ -220,8 +220,8 @@ if(RL_click == true){
 	}
 	j=0;
 	while(nnn2[j]!=-1 && j < 8){
-		if(Data[nnn2[j]][1] == 0 && Data[nnn2[j]][2] ==1 && Mines == flag_num){    //¨S¦a¹p¦³´¡ºX
-			for(int i=0;i<TotalMines;i++){                  //¦a¹p¼Æ­è¦nµ¥©óºX¤l¼Æ®É
+		if(Data[nnn2[j]][1] == 0 && Data[nnn2[j]][2] ==1 && Mines == flag_num){    //æ²’åœ°é›·æœ‰æ’æ——
+			for(int i=0;i<TotalMines;i++){                  //åœ°é›·æ•¸å‰›å¥½ç­‰æ–¼æ——å­æ•¸æ™‚
 				Data[num[i]][3] = 1;
 				if(Data[num[i]][2] == 1 && Data[num[i]][1] == 1){
 				ImageList1->GetBitmap(9,imgs[num[i]]->Picture->Bitmap);
@@ -234,7 +234,7 @@ if(RL_click == true){
 				imgs[num[i]]->OnMouseLeave = NULL;
 			}
 			ImageList1->GetBitmap(8,imgs[nnn2[j]]->Picture->Bitmap);
-			imgs[nnn2[j]]->Refresh();       	//¿ù»~¤§ºX¤l
+			imgs[nnn2[j]]->Refresh();       	//éŒ¯èª¤ä¹‹æ——å­
 			imgs[nnn2[j]]->OnMouseEnter = NULL;
 			imgs[nnn2[j]]->OnMouseLeave = NULL;
 			for(int i=0;i<num_t;i++){
@@ -242,12 +242,12 @@ if(RL_click == true){
 				imgs[i]->OnClick = NULL;
 			}
 			gameover = true;
-		}else if(Data[nnn2[j]][1] == 1 && Data[nnn2[j]][2] ==0){  //¦³¦a¹p¨S´¡ºX
+		}else if(Data[nnn2[j]][1] == 1 && Data[nnn2[j]][2] ==0){  //æœ‰åœ°é›·æ²’æ’æ——
 			flag = false;
 		}
 		j++;
 	}
-	if(flag == true){   //¦³¦a¹p¡A¥ş³£¦³´¡ºX
+	if(flag == true){   //æœ‰åœ°é›·ï¼Œå…¨éƒ½æœ‰æ’æ——
 		for(int i=0;nnn2[i]!=-1 && i < 8;i++){
 			if(Data[nnn2[i]][1] == 0)
 			MinesCheck(nnn2[i],1);
@@ -259,7 +259,7 @@ if(RL_click == true){
 	RL_click = false;
 }
 }
-//¶}©l«ö
+//é–‹å§‹æŒ‰
 void __fastcall TForm1::imgsClick(TObject *Sender){
 	TImage *imgshow=(TImage*)Sender;
 	int NO = imgshow->Tag;
@@ -270,8 +270,8 @@ if(RL_click == false){
 	imgshow->OnMouseLeave = NULL;
 	imgshow->OnMouseDown = imgsMouseDown_Empty;
 	imgshow->OnClick = imgsClick_Empty;
-	//²Ä¤@¦¸ÂIÀ»«Ø¥ß¶Ã¼Æ
-	//0¯Á¤Ş½s¸¹ 1¦a¹p¦ì¸m 2´¡ºX¤l 3¬O§_«ö¶}
+	//ç¬¬ä¸€æ¬¡é»æ“Šå»ºç«‹äº‚æ•¸
+	//0ç´¢å¼•ç·¨è™Ÿ 1åœ°é›·ä½ç½® 2æ’æ——å­ 3æ˜¯å¦æŒ‰é–‹
 	if(first_click == true){
 		num = new int[num_t];
 		bool flag;
@@ -293,7 +293,7 @@ if(RL_click == false){
 		x++;
 		}
 		first_click = false;
-		Timer1->Enabled = true;//¶}©l­p®É
+		Timer1->Enabled = true;//é–‹å§‹è¨ˆæ™‚
 	}
 	MinesCheck(NO,0);
 	}else{
@@ -308,7 +308,7 @@ if(RL_click == false){
 	RL_click = false;
 }
 //---------------------------------------------------------------------------
-int TForm1::MinesCheck(int NO,int Mode){   //ÀË¬d¸ÓÂI¬O§_¦³¦a¹p¡A©MÅã¥Ü¼Æ¦r
+int TForm1::MinesCheck(int NO,int Mode){   //æª¢æŸ¥è©²é»æ˜¯å¦æœ‰åœ°é›·ï¼Œå’Œé¡¯ç¤ºæ•¸å­—
 	if(Data[NO][1] == 1 && Mode == 0){
 		Data[NO][3] = 1;
 		for(int i=0;i<TotalMines;i++){
@@ -333,7 +333,7 @@ int TForm1::MinesCheck(int NO,int Mode){   //ÀË¬d¸ÓÂI¬O§_¦³¦a¹p¡A©MÅã¥Ü¼Æ¦r
 	}else if(NO>=0 && NO < num_t && Data[NO][3] == 0 && Data[NO][2] == 0){
 	Data[NO][3] = 1;
 	int Mines = MinesFound(NO);
-		//¼Ò¦¡1ÂX®i
+		//æ¨¡å¼1æ“´å±•
 		if(Mode == 1){
 			ImageList1->GetBitmap(3,imgs[NO]->Picture->Bitmap);
 			imgs[NO]->Refresh();
@@ -341,7 +341,7 @@ int TForm1::MinesCheck(int NO,int Mode){   //ÀË¬d¸ÓÂI¬O§_¦³¦a¹p¡A©MÅã¥Ü¼Æ¦r
 			imgs[NO]->OnMouseLeave = NULL;
 			imgs[NO]->OnMouseDown = imgsMouseDown_Empty;
 			imgs[NO]->OnClick = imgsClick_Empty;
-		//¼Ò¦¡0Åã¥Ü¼Æ¦r
+		//æ¨¡å¼0é¡¯ç¤ºæ•¸å­—
 		}
 		if(Mines != 0){
 		imgs[NO]->Canvas->Brush->Style=bsClear;
@@ -356,33 +356,33 @@ int TForm1::MinesCheck(int NO,int Mode){   //ÀË¬d¸ÓÂI¬O§_¦³¦a¹p¡A©MÅã¥Ü¼Æ¦r
 		return Mines;
 	}
 	return -1;
-//¤wÂIÀ»
+//å·²é»æ“Š
 }
 //---------------------------------------------------------------------------
 int TForm1::MinesFound(int NO){
-	int NO_x,NO_y;      //Âàx,y®y¼Ğ
+	int NO_x,NO_y;      //è½‰x,yåº§æ¨™
 		NO_x = NO%num_x;
 		NO_y = NO/num_x;
 	int iarr[] = {-1,-1,-1,-1,-1,-1,-1,-1};
-	for(int i=0;i<8;i++)    //ÀË¬dÃä½u
+	for(int i=0;i<8;i++)    //æª¢æŸ¥é‚Šç·š
 		iarr[i] = -1;
-	if(NO_x == num_x-1 && NO_y == 0){//¥k¤W
+	if(NO_x == num_x-1 && NO_y == 0){//å³ä¸Š
 		iarr[0]=3;iarr[1]=5;iarr[2]=6;
-	}else if(NO_x == num_x-1 && NO_y == num_y-1){   //¥k¤U
+	}else if(NO_x == num_x-1 && NO_y == num_y-1){   //å³ä¸‹
 		iarr[0]=0;iarr[1]=1;iarr[2]=3;
-	}else if(NO_x == 0 && NO_y == num_y-1){   //¥ª¤U
+	}else if(NO_x == 0 && NO_y == num_y-1){   //å·¦ä¸‹
 		iarr[0]=1;iarr[1]=2;iarr[2]=4;
-	}else if(NO_x == 0 && NO_y == 0){   //¥ª¤W
+	}else if(NO_x == 0 && NO_y == 0){   //å·¦ä¸Š
 		iarr[0]=4;iarr[1]=6;iarr[2]=7;
-	}else if(NO_x == num_x-1){  //¥k±Æ
+	}else if(NO_x == num_x-1){  //å³æ’
 		iarr[0]=0;iarr[1]=1;iarr[2]=3;iarr[3]=5;iarr[4]=6;
-	}else if(NO_y == num_y-1){   //¤U±Æ
+	}else if(NO_y == num_y-1){   //ä¸‹æ’
 		iarr[0]=0;iarr[1]=1;iarr[2]=2;iarr[3]=3;iarr[4]=4;
-	}else if(NO_x == 0){   //¥ª±Æ
+	}else if(NO_x == 0){   //å·¦æ’
 		iarr[0]=1;iarr[1]=2;iarr[2]=4;iarr[3]=6;iarr[4]=7;
-	}else if(NO_y == 0){  //¤W±Æ
+	}else if(NO_y == 0){  //ä¸Šæ’
 		iarr[0]=3;iarr[1]=4;iarr[2]=5;iarr[3]=6;iarr[4]=7;
-	}else{               //¤¤¶¡
+	}else{               //ä¸­é–“
 		iarr[0]=0;iarr[1]=1;iarr[2]=2;iarr[3]=3;iarr[4]=4;iarr[5]=5;iarr[6]=6;iarr[7]=7;
 	}
 	for(int i=0;i<8;i++)
@@ -418,7 +418,7 @@ int TForm1::MinesFound(int NO){
 		}
 	}
 	int j = 0;
-	int Mines = 0;  //¦a¹pÁ`¼Æ
+	int Mines = 0;  //åœ°é›·ç¸½æ•¸
 	while(nnn[j]!=-1 && j < 8){
 		if(Data[nnn[j]][1] == 1)
 			Mines ++;
@@ -438,7 +438,7 @@ void TForm1::WinCheck(){
 			imgs[num[i]]->OnMouseEnter = NULL;
 			imgs[num[i]]->OnMouseLeave = NULL;
 		}
-		ShowMessage("³Ó§Q");
+		ShowMessage("å‹åˆ©");
 		for(int i=0;i<num_t;i++){
 			imgs[i]->OnMouseDown = NULL;
 			imgs[i]->OnClick = NULL;
@@ -449,9 +449,9 @@ void TForm1::WinCheck(){
 void TForm1::Gameover(int mode){
 	Timer1->Enabled =false;
 	if(mode == 0){
-		ShowMessage("§A½ò¨ì¦a¹p¤F¡I");
+		ShowMessage("ä½ è¸©åˆ°åœ°é›·äº†ï¼");
 	}else if(mode == 1){
-		ShowMessage("§AªººX¤l´¡¿ù¤F¡I");
+		ShowMessage("ä½ çš„æ——å­æ’éŒ¯äº†ï¼");
 	}
 	for(int i=0;i<num_t;i++){
 		imgs[i]->OnMouseDown = NULL;
@@ -460,29 +460,29 @@ void TForm1::Gameover(int mode){
 }
 //---------------------------------------------------------------------------
 void TForm1::Spread(int NO){
-	int NO_x,NO_y;      //Âàx,y®y¼Ğ
+	int NO_x,NO_y;      //è½‰x,yåº§æ¨™
 	NO_x = NO%num_x;
 	NO_y = NO/num_x;
 	int iarr[] = {-1,-1,-1,-1,-1,-1,-1,-1};
-	for(int i=0;i<8;i++)    //ÀË¬dÃä½u
+	for(int i=0;i<8;i++)    //æª¢æŸ¥é‚Šç·š
 		iarr[i] = -1;
-	if(NO_x == num_x-1 && NO_y == 0){//¥k¤W
+	if(NO_x == num_x-1 && NO_y == 0){//å³ä¸Š
 		iarr[0]=3;iarr[1]=5;iarr[2]=6;
-	}else if(NO_x == num_x-1 && NO_y == num_y-1){   //¥k¤U
+	}else if(NO_x == num_x-1 && NO_y == num_y-1){   //å³ä¸‹
 		iarr[0]=0;iarr[1]=1;iarr[2]=3;
-	}else if(NO_x == 0 && NO_y == num_y-1){   //¥ª¤U
+	}else if(NO_x == 0 && NO_y == num_y-1){   //å·¦ä¸‹
 		iarr[0]=1;iarr[1]=2;iarr[2]=4;
-	}else if(NO_x == 0 && NO_y == 0){   //¥ª¤W
+	}else if(NO_x == 0 && NO_y == 0){   //å·¦ä¸Š
 		iarr[0]=4;iarr[1]=6;iarr[2]=7;
-	}else if(NO_x == num_x-1){  //¥k±Æ
+	}else if(NO_x == num_x-1){  //å³æ’
 		iarr[0]=0;iarr[1]=1;iarr[2]=3;iarr[3]=5;iarr[4]=6;
-	}else if(NO_y == num_y-1){   //¤U±Æ
+	}else if(NO_y == num_y-1){   //ä¸‹æ’
 		iarr[0]=0;iarr[1]=1;iarr[2]=2;iarr[3]=3;iarr[4]=4;
-	}else if(NO_x == 0){   //¥ª±Æ
+	}else if(NO_x == 0){   //å·¦æ’
 		iarr[0]=1;iarr[1]=2;iarr[2]=4;iarr[3]=6;iarr[4]=7;
-	}else if(NO_y == 0){  //¤W±Æ
+	}else if(NO_y == 0){  //ä¸Šæ’
 		iarr[0]=3;iarr[1]=4;iarr[2]=5;iarr[3]=6;iarr[4]=7;
-	}else{               //¤¤¶¡
+	}else{               //ä¸­é–“
 		iarr[0]=0;iarr[1]=1;iarr[2]=2;iarr[3]=3;iarr[4]=4;iarr[5]=5;iarr[6]=6;iarr[7]=7;
 	}
 	for(int i=0;i<8;i++){
@@ -528,23 +528,23 @@ void __fastcall TForm1::imgsClick_flag(TObject *Sender)
 void TForm1::CreateImgs(int num_x,int num_y)
 {
 	Panel1->AutoSize = false;
-	num_t = num_x * num_y; //¦a¹pÁ`¼Æ
-	remainder = num_t - TotalMines;//³Ñ¾l®æ¼Æ
+	num_t = num_x * num_y; //åœ°é›·ç¸½æ•¸
+	remainder = num_t - TotalMines;//å‰©é¤˜æ ¼æ•¸
 	TotalMines_D = TotalMines;
 	int img_h=Image1->Height,
 		img_w=Image1->Width,
 		img_t=Image1->Top,
 		img_l=Image1->Left,
-		img_padding=1;  //¶¡¶Z
+		img_padding=1;  //é–“è·
 	imgs = new TImage *[num_t];
-	//¦C¥~³B²z
+	//åˆ—å¤–è™•ç†
 	try{
 	for (int i=0 ; i<num_t ; ++i){
-		imgs[i] = new TImage(this); //¼W¥[·s¹Ï¤ù
+		imgs[i] = new TImage(this); //å¢åŠ æ–°åœ–ç‰‡
 		imgs[i]->Parent  =Panel1;
 		imgs[i]->AutoSize= false;
-		imgs[i]->Height  = img_h; // ¼v¹³ª«¥óªº°ª«×
-		imgs[i]->Width   = img_w; // ¼v¹³ª«¥óªº¼e«×
+		imgs[i]->Height  = img_h; // å½±åƒç‰©ä»¶çš„é«˜åº¦
+		imgs[i]->Width   = img_w; // å½±åƒç‰©ä»¶çš„å¯¬åº¦
 		imgs[i]->OnMouseEnter = imgsMouseEnter;
 		imgs[i]->OnMouseLeave = imgsMouseLeave;
 		imgs[i]->OnMouseDown  = imgsMouseDown;
@@ -571,14 +571,14 @@ void TForm1::CreateImgs(int num_x,int num_y)
 	}
 	}
 		catch(...){
-		ShowMessage("¨t²ÎµLªk­t²ü");
+		ShowMessage("ç³»çµ±ç„¡æ³•è² è·");
 		N99101Click(NULL);
 
 	}
 	Panel1->AutoSize = true;
 }
 //---------------------------------------------------------------------------
-TColor TForm1::ImgsColor(int amount){//¼Æ¦rÃC¦â
+TColor TForm1::ImgsColor(int amount){//æ•¸å­—é¡è‰²
 	TColor Color;
 	switch(amount)
 	{
@@ -623,7 +623,7 @@ void __fastcall TForm1::N1630991Click(TObject *Sender)
 void __fastcall TForm1::FormCreate(TObject *Sender)
 {
 	time_t t;
-	srand((unsigned) time(&t)); // ¥H®É¶¡·íºØ¤l
+	srand((unsigned) time(&t)); // ä»¥æ™‚é–“ç•¶ç¨®å­
 
 
 }
@@ -653,11 +653,11 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 	y = StrToInt(Edit1->Text);
 	TM = StrToInt(Edit3->Text);
 	if(TM < 1){
-		 ShowMessage("Á`¦a¹p¥²¶·¤j©ó0");
+		 ShowMessage("ç¸½åœ°é›·å¿…é ˆå¤§æ–¼0");
 	}else if(x <=1 ||y <=1){
-		ShowMessage("¦Ü¤Ö­n2¡Ñ2¥H¤W");
+		ShowMessage("è‡³å°‘è¦2Ã—2ä»¥ä¸Š");
 	}else if(TM >= x * y ){
-		ShowMessage("¦a¹p¼Æ¹L¦h");
+		ShowMessage("åœ°é›·æ•¸éå¤š");
 	}else{
 		Clear();
 		num_x = x;
@@ -667,7 +667,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 		Start();
 	}
 	}catch(...){
-		ShowMessage("½Ğ¿é¤J¾ã¼Æ");
+		ShowMessage("è«‹è¼¸å…¥æ•´æ•¸");
 	}
 
 }
@@ -705,7 +705,7 @@ if(Edit3->Text != ""){
 	Edit4->Text =  FloatToStr(persent);
 	}
 	}catch(...){
-		ShowMessage("½Ğ¿é¤J¾ã¼Æ");
+		ShowMessage("è«‹è¼¸å…¥æ•´æ•¸");
 	}
 }
 }
@@ -733,7 +733,7 @@ if(Edit4->Text != ""){
 		int MS = ((x * y)/100) * (persent);
 		Edit3->Text = FloatToStr(MS);
 	}catch(...){
-		ShowMessage("½Ğ¿é¤J¾ã¼Æ");
+		ShowMessage("è«‹è¼¸å…¥æ•´æ•¸");
 	}
 
 }

@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 
 #include <vcl.h>
 #pragma hdrstop
@@ -12,7 +12,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 	{
 		Application->Initialize();
 		Application->MainFormOnTaskBar = true;
-		Application->Title = "½ò¦a¹p";
+		Application->Title = "è¸©åœ°é›·";
 		Application->CreateForm(__classid(TForm1), &Form1);
 		Application->Run();
 	}
