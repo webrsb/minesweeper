@@ -17,7 +17,6 @@ int num_t;  //地雷總數
 int first_click,TotalMines,TotalMines_D,num_x,num_y,remainder,gametime,RL_click;
 int *num;   //地雷陣列
 int nnn[8],nnn3[8];
-bool re_flag;
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
 	: TForm(Owner)
@@ -31,7 +30,6 @@ void TForm1::Start()
 	CreateImgs(num_x,num_y);
 	first_click = true;//第一次點擊
 	RL_click = false;
-	re_flag = false;
 	//0索引編號 1地雷位置 2是否插旗 3是否按開
 	Data = new int*[num_t];
 	for(int i=0; i<num_t; i++){
@@ -132,11 +130,6 @@ void __fastcall TForm1::imgsMouseUp(TObject *Sender, TMouseButton Button, TShift
 		ImageList1->GetBitmap(0,imgs[nnn3[j]]->Picture->Bitmap);
 		imgs[nnn3[j]]->Refresh();
 		j++;
-	}
-	if(re_flag == true){
-		Clear();
-		Label3->Caption = IntToStr(TotalMines);
-		Start();
 	}
 }
 //---------------------------------------------------------------------------
@@ -337,7 +330,6 @@ int TForm1::MinesCheck(int NO,int Mode){   //檢查該點是否有地雷，和顯示數字
 		ImageList1->GetBitmap(7,imgs[NO]->Picture->Bitmap);
 		imgs[NO]->Refresh();
 		Gameover(0);
-		return -1;
 	}else if(NO>=0 && NO < num_t && Data[NO][3] == 0 && Data[NO][2] == 0){
 	Data[NO][3] = 1;
 	int Mines = MinesFound(NO);
@@ -436,7 +428,6 @@ int TForm1::MinesFound(int NO){
 }
 //---------------------------------------------------------------------------
 void TForm1::WinCheck(){
-	int result=-1;
 	if(remainder == 0){
 		Label3->Caption = ("0");
 		Timer1->Enabled =false;
@@ -447,36 +438,24 @@ void TForm1::WinCheck(){
 			imgs[num[i]]->OnMouseEnter = NULL;
 			imgs[num[i]]->OnMouseLeave = NULL;
 		}
+		ShowMessage("勝利");
 		for(int i=0;i<num_t;i++){
 			imgs[i]->OnMouseDown = NULL;
 			imgs[i]->OnClick = NULL;
-		}
-		result = Application->MessageBox(L"勝利！是否重新這一局？",L"遊戲結束",33);
-		if(result == 1){
-			re_flag = true;
-		}else if(result == 2){
-			Panel2->Visible = true;
 		}
 	}
 }
 //---------------------------------------------------------------------------
 void TForm1::Gameover(int mode){
 	Timer1->Enabled =false;
-	re_flag = false;
-	int result=-1;
+	if(mode == 0){
+		ShowMessage("你踩到地雷了！");
+	}else if(mode == 1){
+		ShowMessage("你的旗子插錯了！");
+	}
 	for(int i=0;i<num_t;i++){
 		imgs[i]->OnMouseDown = NULL;
 		imgs[i]->OnClick = NULL;
-	}
-	if(mode == 0){
-		result = Application->MessageBox(L"你踩到地雷了！是否重新這一局？",L"遊戲結束",33);
-	}else if(mode == 1){
-		result = Application->MessageBox(L"你的旗子插錯了！是否重新這一局？",L"遊戲結束",33);
-	}
-	if(result == 1){
-		re_flag = true;
-	}else if(result == 2){
-		Panel2->Visible = true;
 	}
 }
 //---------------------------------------------------------------------------
@@ -666,13 +645,16 @@ void __fastcall TForm1::N2Click(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
+
+
+
+
+
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
-	int x,y,TM;
-	try{
-	x = StrToInt(Edit2->Text);
-	y = StrToInt(Edit1->Text);
-	TM = StrToInt(Edit3->Text);
+	int x = StrToInt(Edit2->Text);
+	int y = StrToInt(Edit1->Text);
+	int TM = StrToInt(Edit3->Text);
 	if(TM < 1){
 		 ShowMessage("總地雷必須大於0");
 	}else if(x <=1 ||y <=1){
@@ -683,14 +665,10 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 		Clear();
 		num_x = x;
 		num_y = y;
-		TotalMines = TM;
+        TotalMines = TM;
 		Label3->Caption = IntToStr(TotalMines);
 		Start();
 	}
-	}catch(...){
-		ShowMessage("請輸入整數");
-	}
-
 }
 //---------------------------------------------------------------------------
 
@@ -712,67 +690,9 @@ N99101Click(Sender);
 }
 //---------------------------------------------------------------------------
 
-void TForm1::GetPersent(){
-if(Edit3->Text != ""){
-	float x,y,TM;
-	try{
-	x = StrToFloat(Edit2->Text);
-	y = StrToFloat(Edit1->Text);
-	TM = StrToFloat(Edit3->Text);
-	float persent = ((TM) / (x*y))*100;
-	if(persent >= 100){
-		Edit4->Text = "100";
-	}else{
-	AnsiString temp = FormatFloat("###0.0",persent);
-	Edit4->Text =  temp;
-	}
-	}catch(...){
-		ShowMessage("請輸入整數");
-	}
-}
-}
-void __fastcall TForm1::Edit3KeyUp(TObject *Sender, WORD &Key, TShiftState Shift)
-
-{
-	GetPersent();
-}
-//---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::Edit4KeyUp(TObject *Sender, WORD &Key, TShiftState Shift)
 
-{
-if(Edit4->Text != ""){
-	float x,y,persent;
-	try{
-		x = StrToFloat(Edit2->Text);
-		y = StrToFloat(Edit1->Text);
-		persent = StrToFloat(Edit4->Text);
-		if(persent >=100){
-			Edit4->Text = "100";
-			persent = 100;
-		}
-		int MS = ((x * y)/100) * (persent);
-		Edit3->Text = FloatToStr(MS);
-	}catch(...){
-		ShowMessage("請輸入整數");
-	}
-
-}
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::FormClick(TObject *Sender)
-{
-	Panel2->Visible = false;
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::Edit4Enter(TObject *Sender)
-{
- 	GetPersent();
-}
-//---------------------------------------------------------------------------
 
 
 
